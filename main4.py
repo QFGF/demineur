@@ -132,7 +132,6 @@ def Print_Line(n):
 Print_Line(5)
 
 def draw_grille():
-	print(window_h, window_w)
 	for a in range(12):
 		pygame.draw.line(window,(0,0,0),[0,a*(window_h/12)],[window_w,a*(window_h/12)])
 	for b in range(25):
@@ -151,16 +150,30 @@ def __main__(finish,tx,ty,playerspawn,playery,playerx):
 		tx,ty=0,0
 		pygame.Surface.fill(window,(255,255,255))
 		draw_grille()
-		#Player().movements(window_h, window_w, playerx, playery)
+		#Player().movements(ss, window_w, playerx, playery)
 		for event in pygame.event.get():
 			if event.type == KEYDOWN and event.key == K_DOWN:
-				playery = playery + (window_h/12)
+				if playery == (window_h - (window_h/12)):
+					pass
+				else:
+					playery = playery + (window_h/12)
 			elif event.type == KEYDOWN and event.key == K_UP:
-				playery = playery - (window_h/12)
+				if playery == 0:
+					pass
+				else:
+					playery = playery - (window_h/12)
 			elif event.type == KEYDOWN and event.key == K_RIGHT:
-				playerx = playerx + (window_w/25)
+				if playerx == (window_w - (window_w/25)):
+					pass
+				else: 
+					playerx = playerx + (window_w/25)
 			elif event.type == KEYDOWN and event.key == K_LEFT:
-				playerx = playerx - (window_w/25)
+				if playerx == 0:
+					pass
+				else:
+					playerx = playerx - (window_w/25)
+			elif event.type == KEYDOWN and event.key == K_ESCAPE:
+				quit()
 		pygame.draw.rect(window, [162, 162, 162], (playerx, playery,(window_w/25) , (window_h/12)))
 		pygame.display.flip()
 __main__(finish,tx,ty,playerspawn,playery, playerx)
