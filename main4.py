@@ -141,7 +141,7 @@ def draw_grille():
 if playerspawn == False:
 			Player().apparition(window_h, window_w, playerx, playery, blocy, blocx)
 			playerspawn = True
-def __main__(finish,tx,ty,playerspawn,playery,playerx,blocx,blocy):
+def __main__(finish,tx,ty,playerspawn,playery,playerx):
 	CreateMap()
 	GenerateMineMap()
 	GenerateMap()
@@ -154,7 +154,13 @@ def __main__(finish,tx,ty,playerspawn,playery,playerx,blocx,blocy):
 		#Player().movements(window_h, window_w, playerx, playery)
 		for event in pygame.event.get():
 			if event.type == KEYDOWN and event.key == K_DOWN:
-				playery = playery + blocy
-		pygame.draw.rect(window, [162, 162, 162], (playerx, playery, blocx, blocy))
+				playery = playery + (window_h/12)
+			elif event.type == KEYDOWN and event.key == K_UP:
+				playery = playery - (window_h/12)
+			elif event.type == KEYDOWN and event.key == K_RIGHT:
+				playerx = playerx + (window_w/25)
+			elif event.type == KEYDOWN and event.key == K_LEFT:
+				playerx = playerx - (window_w/25)
+		pygame.draw.rect(window, [162, 162, 162], (playerx, playery,(window_w/25) , (window_h/12)))
 		pygame.display.flip()
-__main__(finish,tx,ty,playerspawn,playery, playerx, blocy, blocx)
+__main__(finish,tx,ty,playerspawn,playery, playerx)
