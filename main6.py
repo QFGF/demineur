@@ -19,8 +19,7 @@ playery = 0
 ####
 tmprandom = random.randint(1,12)
 ####
-blocy = window_h / 12
-blocx = window_w / 25
+
 
 
 
@@ -117,12 +116,11 @@ def case_gestion(x,y):
 	if map[y][x]==9:
 		print "\n\n\n   You Die\n\n\n" 
 		return True
-	elif map[y][x]==10:
+	elif map[y][x]==-1:
 		print "\n\n\n   You Won\n\n\n"
 		return True
 	else:
 		#print map[y][x]
-		map[y][x]+=10 
 		return False
 
 
